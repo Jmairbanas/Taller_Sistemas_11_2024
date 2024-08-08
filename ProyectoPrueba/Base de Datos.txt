@@ -1,0 +1,162 @@
+DROP DATABASE IF EXISTS bd_proyecto;
+create database bd_proyecto;
+use bd_proyecto;
+
+-- ESTRUCTURA DE LA TABLA --
+create table rol(
+idRol int primary key auto_increment,
+descripcionRol varchar (50) not null,
+estadoRol varchar (50) not null);
+
+create table usuario(
+idUsuario int primary key auto_increment,
+correoUsuario varchar (50) not null,
+passwordUsuario varchar (50) not null,
+estadoUsuario varchar (40) not null,
+idRol int,
+foreign key (idRol) references rol (idRol));
+
+create table empleado(
+idEmpleado int primary key auto_increment,
+numDocEmpleado int not null,
+tipoDocEmpleado varchar (20) not null,
+nombreEmpleado varchar (50) not null,
+apellidoEmpleado varchar (50) not null,
+direccionEmpleado varchar (50),
+telefonoEmpleado bigint,
+correoEmpleado varchar (100) not null,
+estadoEmpleado varchar (10) not null,
+idUsuario int,
+foreign key (idUsuario) references usuario (idUsuario));
+
+create table cliente(
+idCliente int primary key auto_increment,
+numDocCliente int not null,
+tipoDocCliente varchar (20) not null,
+nombreCliente varchar (50) not null,
+apellidoCliente varchar (50) not null,
+direccionCliente varchar (50),
+telefonoCliente bigint,
+correoCliente varchar (100) not null,
+estadoCliente varchar (20) not null,
+idUsuario int,
+foreign key (idUsuario) references usuario (idUsuario));
+
+create table producto (
+idProducto int(11) primary key auto_increment,
+nombreProducto varchar(50) not null,
+descripcionProducto varchar(100) not null,
+valorProducto float not null,
+unidadProducto int(11) not null,
+stockProducto int(11) not null,
+EstadoProducto varchar(20) not null);
+
+-- Inserciones --
+
+INSERT INTO rol (descripcionRol, estadoRol) VALUES
+('Empleado', 'Activo'),
+('Cliente', 'Activo'),
+('Administrador', 'Activo');
+
+
+INSERT INTO usuario (correoUsuario, passwordUsuario, estadoUsuario, idRol) VALUES
+('andrea.rojas@gmail.com', 'Daniela12345', 'Activo', 2),
+('jmsanabria@educacionbogota.edu.co', '1234567890', 'Activo', 3),
+('andres.gomez@gmail.com', '12345', 'Activo', 1),
+('juliana.castro@gmail.com', '67890', 'Activo', 2),
+('camila.diaz@gmail.com', 'abcde', 'Activo', 1),
+('jose.rojas@gmail.com', 'fghij', 'Activo', 2),
+('claudia.paez@hotmail.com', 'Claudia12345', 'Activo', 1),
+('d.gomez@gmail.com', 'gomez12345', 'Activo', 3),
+('carlos_diaz@hotmail.com', 'Carlos12345', 'Activo', 1),
+('andrea_caicedo@hotmail.com', 'Andrea12345', 'Activo', 3);
+
+INSERT INTO empleado (numDocEmpleado, tipoDocEmpleado, nombreEmpleado, apellidoEmpleado, direccionEmpleado, telefonoEmpleado, 
+correoEmpleado, estadoEmpleado, idUsuario) VALUES
+(80123456, 'CC', 'Juan Manuel', 'Sanabria Casiano', 'CL 52 S # 87-90', 3143935341, 'jmairbanas@gmail.com', 'Activo', 2),
+(1033234567, 'CC', 'Andres Felipe', 'Gomez Rojas', 'CR 44 # 89 -10', 3204563456, 'andres.gomez@gmail.com', 'Activo', 3),
+(1033133248, 'CC', 'Camila Andrea', 'Diaz Martinez', 'CL 52 S No 4 - 33', 3202181624, 'camila.diaz@gmail.com', 'Activo', 5),
+(1016234567, 'CC', 'Claudia Lucia', 'Paez Martinez', 'CR 34 # 16-29', 3162345678, 'claudia.paez@hotmail.com', 'Activo', 7),
+(80987654, 'CC', 'David Andres', 'Gomez Torres', 'CL 85 # 23-34', 3172345678, 'd.gomez@gmail.com', 'Activo', 8),
+(3012345, 'CE', 'Carlos Arturo', 'Diaz Flórez', 'CL 127 # 43 - 16', 3223678345, 'carlos_diaz@hotmail.com', 'Activo', 9),
+(1033567456, 'CC', 'Andrea Milena', 'Caicedo Martinez', 'CL 32 # 10-28', 3054035467, 'andrea_caicedo@hotmail.com', 'Activo', 10);
+
+INSERT INTO cliente (numDocCliente, tipoDocCliente, nombreCliente, apellidoCliente, direccionCliente, telefonoCliente, 
+correoCliente, estadoCliente, idUsuario) VALUES
+(52763890, 'CC', 'Andrea Daniela', 'Rojas Muñoz', 'CR 35 # 35-35', 3809000000, 'andrea.rojas@gmail.com', 'Activo', 1),
+(1025345678, 'CC', 'Juliana Andrea', 'Castro Diaz', 'Calle 33 # 18 - 08', 3148907654, 'juliana.castro@gmail.com', 'Activo', 4),
+(1016215328, 'CC', 'Jose Armando', 'Rojas LÃ³pez', 'CL 43S No 33-34', 3162183312, 'jose.rojas@gmail.com', 'Activo', 6);
+
+INSERT INTO producto (nombreProducto, descripcionProducto, valorProducto, unidadProducto, stockProducto, EstadoProducto) VALUES
+('Banano', 'Bocadillo en bolsa', 2400, 500, 20, 'Activo'),
+('Aguacate', 'Hass en malla', 3900, 500, 30, 'Activo'),
+('Piña', 'Golden por unidad', 6800, 1, 15, 'Activo'),
+('Limon', 'TahitÃ­ en malla', 3950, 500, 10, 'Activo'),
+('Naranja', 'Jugo en malla', 2000, 500, 30, 'Activo'),
+('Durazno', 'En bolsa', 5400, 500, 12, 'Activo'),
+('Manzana', 'Royal en bandeja', 10900, 800, 10, 'Activo'),
+('Pera', 'Importada en bandeja', 10900, 900, 22, 'Activo'),
+('Coco', 'Unidad', 7300, 900, 20, 'Activo'),
+('Uva', 'verde sin semilla en bandeja', 16400, 500, 15, 'Activo');
+
+-- Procedimientos Almacenados --
+DELIMITER //
+CREATE PROCEDURE Pr_EliminarEmpleado (IN idEmp INT)   
+BEGIN
+delete from empleado where idEmpleado=idEmp;
+END //
+
+DELIMITER //
+CREATE PROCEDURE Pr_EliminarEmpleadoUsuario (IN idEmp INT, IN idUsu INT)   BEGIN
+delete from empleado where idEmpleado=idEmp;
+delete from usuario where idUsuario=idUsu;
+END //
+
+DELIMITER //
+CREATE PROCEDURE Pr_EliminarUsuario (IN idUsu INT)   BEGIN
+delete from usuario where idUsuario=idUsu;
+END //
+
+DELIMITER //
+CREATE PROCEDURE Pr_InsertarEmpleadoUsuario (IN corUsu VARCHAR(50), IN pasUsu VARCHAR(50), IN estUsu VARCHAR(40), IN idRol INT, 
+IN nDocEmp INT, IN tDocEmp VARCHAR(20), IN nomEmp VARCHAR(50), IN apeEmp VARCHAR(50), IN dirEmp VARCHAR(50), IN telEmp BIGINT, 
+IN corEmp VARCHAR(100), IN estEmp VARCHAR(10))
+BEGIN
+insert into usuario(correoUsuario, passwordUsuario, estadoUsuario, idRol) 
+VALUES (corUsu, pasUsu, estUsu, idRol);
+insert into empleado (numDocEmpleado, tipoDocEmpleado, nombreEmpleado, apellidoEmpleado, direccionEmpleado, telefonoEmpleado, correoEmpleado, estadoEmpleado, idUsuario) 
+VALUES (nDocEmp, tDocEmp, nomEmp, apeEmp, dirEmp, telEmp, corEmp, estEmp,((select count(*) from usuario)+1));
+END //
+
+DELIMITER //
+CREATE PROCEDURE Pr_InsertarClienteUsuario (IN corUsu VARCHAR(50), IN pasUsu VARCHAR(50), IN estUsu VARCHAR(40), IN idRol INT, IN nDocCli INT, IN tDocCli VARCHAR(20), IN nomCli VARCHAR(50), IN apeCli VARCHAR(50), IN dirCli VARCHAR(50), IN telCli BIGINT, IN corCli VARCHAR(100), IN estCli VARCHAR(10))
+BEGIN
+insert into usuario(correoUsuario, passwordUsuario, estadoUsuario, idRol) 
+VALUES (corUsu, pasUsu, estUsu, idRol);
+insert into cliente (numDocCliente, tipoDocCliente, nombreCliente, apellidoCliente, direccionCliente, telefonoCliente, correoCliente, estadoCliente, idUsuario) 
+VALUES (nDocCli, tDocCli, nomCli, apeCli, dirCli, telCli, corCli, estCli,(LAST_INSERT_ID()));
+END //
+
+
+DELIMITER //
+CREATE PROCEDURE Pr_ModificarContrasena (IN IdUsu INT, IN conUsu VARCHAR(50))   
+BEGIN
+update usuario set passwordUsuario=conUsu where idUsuario=idUsu;
+END //
+
+
+DELIMITER //
+CREATE PROCEDURE Pr_ModificarEmpleado (IN idEmp INT, IN idUsu INT, IN corUsu VARCHAR(50), IN estUsu VARCHAR(40), IN desRol INT, 
+IN numEmp INT, IN tdocEmp VARCHAR(20), IN nomEmp VARCHAR(50), IN apeEmp VARCHAR(50), IN dirEmp VARCHAR(50), IN telEmp BIGINT, 
+IN corEmp VARCHAR(100), IN estEmp VARCHAR(10))   
+BEGIN
+update usuario set correoUsuario = corUsu, estadoUsuario = estUsu, idRol=desRol where idUsuario = idUsu;
+update empleado set numDocEmpleado=numEmp, tipoDocEmpleado=tdocEmp, nombreEmpleado = nomEmp, apellidoEmpleado = apeEmp, 
+direccionEmpleado = dirEmp, telefonoEmpleado = telEmp, correoEmpleado = corEmp, estadoEmpleado = estEmp where idEmpleado = idEmp;
+END //
+
+DELIMITER //
+CREATE PROCEDURE Pr_ModificarUsuario (IN idUsu INT, IN corUsu VARCHAR(50), IN estUsu VARCHAR(40))   
+BEGIN
+update usuario set correoUsuario=corUsu, estadoUsuario=estUsu where idUsuario=idUsu;
+END //
