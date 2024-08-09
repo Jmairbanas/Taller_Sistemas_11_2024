@@ -36,7 +36,7 @@
                             </li>
                         </ul>
                     <span class="navbar-text">
-                        <a href="#" class="btn btn-success text-light">Login</a>
+                        <a href="#" class="btn btn-success text-dark">Login</a>
                     </span>
                     </div>
                 </div>
@@ -48,10 +48,9 @@
             <div class="container" id="contenedor-formulario">
                 <div id="titulo-formulario" class="text-center mb-4">
                     <img src="../../public/imagenes/ImagenI1.png" alt="LogoLogin" height="50" width="50" class="img-fluid mt-2">
-                    <h2 class="text-light fw-bold">Registro de Cliente</h2>
+                    <h2 class="text-dark fw-bold">Registro de Usuario</h2>
                     <p class="fs-5"></p>
-                    <form action="../controlador/Crtl_IngresarUsuario.php" method="POST">
-                        <h1>Datos de Usuario</h1>
+                    <form action="../controlador/ctrl_Register.php" method="POST">
                         <?php
                             if($_GET)
                             {
@@ -69,21 +68,9 @@
                                 }
                             }
                         ?>
-                        <div class="mb-2 w-75 mx-auto">
-                            <label for="texto-usuario" class="form-label text-light fw-bold">Correo Usuario</label>
-                            <input type="text" name="Usuario" class="form-control" id="texto-usuario" aria-describedby="ingreso de usuario" Required>
-                        </div>
+                        <h1>Datos del Usuario</h1>
                         <div class="mb-3 w-75 mx-auto">
-                            <label for="texto-password" class="form-label text-light fw-bold">Contraseña Usuario</label>
-                            <input type="password" name="Contrasena" class="form-control" id="texto-password" Required>
-                        </div>
-                        <h1>Datos del Cliente</h1>
-                        <div class="mb-2 w-75 mx-auto">
-                            <label for="texto-usuario" class="form-label text-light fw-bold">Número Documento Cliente</label>
-                            <input type="number" name="Documento" class="form-control" id="texto-usuario" aria-describedby="ingreso de usuario" Required>
-                        </div>
-                        <div class="mb-3 w-75 mx-auto">
-                            <label for="texto-password" class="form-label text-light fw-bold">Tipo de Documento Cliente</label>
+                            <label for="texto-password" class="form-label text-dark fw-bold">Tipo de Documento Cliente</label>
                             <select name="TipoDoc" class="form-control" id="texto-password">
                                 <option value="CC">Cédula de Ciudadanía</option>
                                 <option value="CE">Cédula de Extranjería</option>
@@ -91,24 +78,40 @@
                             </select>
                         </div>
                         <div class="mb-2 w-75 mx-auto">
-                            <label for="texto-usuario" class="form-label text-light fw-bold">Nombre Cliente</label>
+                            <label for="texto-usuario" class="form-label text-dark fw-bold">Número Documento Usuario</label>
+                            <input type="number" name="Documento" class="form-control" id="texto-usuario" aria-describedby="ingreso de usuario" Required>
+                        </div>
+                        <div class="mb-2 w-75 mx-auto">
+                            <label for="texto-usuario" class="form-label text-dark fw-bold">Nombre Usuario</label>
                             <input type="text" name="Nombre" class="form-control" id="texto-usuario" aria-describedby="ingreso de usuario" Required>
                         </div>
                         <div class="mb-3 w-75 mx-auto">
-                            <label for="texto-password" class="form-label text-light fw-bold">Apellidos Cliente</label>
+                            <label for="texto-password" class="form-label text-dark fw-bold">Apellidos Usuario</label>
                             <input type="text" name="Apellido" class="form-control" id="texto-password" Required>
                         </div>
                         <div class="mb-2 w-75 mx-auto">
-                            <label for="texto-usuario" class="form-label text-light fw-bold">Dirección Cliente</label>
+                            <label for="texto-usuario" class="form-label text-dark fw-bold">Dirección Usuario</label>
                             <input type="text" name="Direccion" class="form-control" id="texto-usuario" aria-describedby="ingreso de usuario" Required>
                         </div>
                         <div class="mb-3 w-75 mx-auto">
-                            <label for="texto-password" class="form-label text-light fw-bold">Teléfono Cliente</label>
+                            <label for="texto-password" class="form-label text-dark fw-bold">Teléfono Usuario</label>
                             <input type="text" name="Telefono" class="form-control" id="texto-password" Required>
                         </div>
                         <div class="mb-2 w-75 mx-auto">
-                            <label for="texto-usuario" class="form-label text-light fw-bold">Correo Cliente</label>
+                            <label for="texto-usuario" class="form-label text-dark fw-bold">Correo Usuario</label>
                             <input type="text" name="Correo" class="form-control" id="texto-usuario" aria-describedby="ingreso de usuario" Required>
+                        </div>
+                        <div class="mb-3 w-75 mx-auto">
+                            <label for="texto-password" class="form-label text-dark fw-bold">Contraseña Usuario</label>
+                            <input type="password" name="Contrasena" class="form-control" id="texto-password" Required>
+                        </div>
+                        <div class="mb-3 w-75 mx-auto">
+                            <label for="texto-Rol" class="form-label text-dark fw-bold">Rol</label>
+                            <select name="Rol" class="form-control" id="texto-password">
+                                <option value="1" disabled>Administrador</option>
+                                <option value="2" selected>Cliente</option>
+                                <option value="3" disabled>Domiciliario</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-success w-75">INGRESAR</button>
                     </form>

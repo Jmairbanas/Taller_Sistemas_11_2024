@@ -15,11 +15,11 @@ if(isset($_POST)&&!empty($_POST))
     $objUsuario = new clsUsuario();
 
     //Guardo en las variables de la clase usuario los valores ingresados.
-    $objUsuario->setUsuario($usuario);
+    $objUsuario->setcorreo($usuario);
     $objUsuario->setContrasena($contrasena);
 
     //Revisar que valores ingresaron en la clase usuario
-    //echo $objUsuario->getUsuario();
+    //echo $objUsuario->getcorreo();
     //echo $objUsuario->getContrasena();
 
     if($objUsuario->Login()==true)
