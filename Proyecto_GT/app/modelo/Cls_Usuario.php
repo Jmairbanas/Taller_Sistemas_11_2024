@@ -138,5 +138,22 @@ class clsUsuario extends clsConexion
         }
 
     }
+
+    //FUncion para consultar los usuarios
+
+    public function consultar_usuarios()
+    {
+        $Consulta = $this->db->prepare("SELECT `idUsuario`, `tipoDocUsuario`, `numdocUsuario`, `nombreUsuario`, 
+        `apellidoUsuario`, `direccionUsuario`, `telefonoUsuario`, `correoUsuario` FROM `usuario`");
+        $filas=null;
+        $Consulta->execute();
+
+        while($resultado = $Consulta->fetch())
+        {
+            $filas[]=$resultado;
+        }
+        
+        return $filas;
+    }
 }
 ?> 
