@@ -50,7 +50,7 @@
                     <img src="../../public/imagenes/ImagenI1.png" alt="LogoLogin" height="50" width="50" class="img-fluid mt-2">
                     <h2 class="text-light fw-bold">Inicio de Sesión</h2>
                     <p class="fs-5"></p>
-                    <form action="../Controlador/Ctrl_Register.php" method="POST">
+                    <form action="../Controlador/ctrl_login.php" method="POST">
                         <div class="mb-2 w-75 mx-auto">
                             <label for="texto-usuario" class="form-label text-light fw-bold">Usuario</label>
                             <input type="email" name="Usuario" class="form-control" id="texto-usuario" aria-describedby="ingreso de usuario" Required>
