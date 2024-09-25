@@ -44,17 +44,18 @@
         </header>
 
         <!-- CONSULTA -->
-        <div class="Content">
+        <div class="Content p-3">
         <table class="table">
             <thead class="table-dark">
                 <th>ID</th>
-                <th>tIPO DE DOCUMENTO</th>
+                <th>TIPO DE DOCUMENTO</th>
                 <th>NÚMERO DE DOCUMENTO</th>
                 <th>NOMBRE</th>
                 <th>APELLIDO</th>
                 <th>DIRECCIÓN</th>
                 <th>TELÉFONO</th>
                 <th>CORREO</th>
+                <th colspan="2">FUNCIONES</th>
             </thead>
             <tbody>
                 
@@ -75,26 +76,15 @@
                         <td><?php echo $fila['direccionUsuario'];?></td>
                         <td><?php echo $fila['telefonoUsuario'];?></td>
                         <td><?php echo $fila['correoUsuario'];?></td>
-
+                        <td><a href="../controlador/ctrl_editarU.php?ID=<?php echo $fila['idUsuario']; ?>" class="btn btn-primary">EDITAR</a></td>
+                        <td><a class="btn btn-danger">BORRAR</a></td>
                     </tr>
                 <?php
-                }
-
-                ?>
-                
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                }?>
             </tbody>
         </table>
         </div>
+        <a class="btn btn-outline-success" href="reportes/prueba.php" >Generar Reporte</a>
 
         <!-- PIE DE PÁGINA -->
 

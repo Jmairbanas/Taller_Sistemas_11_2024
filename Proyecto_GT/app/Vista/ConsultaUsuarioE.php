@@ -43,39 +43,20 @@
             </nav>
         </header>
 
-        <!-- FORMULARIO -->
-        <section id="seccion-formulario" class="border-bottom border-success border-2 mt-2 w-50 mx-auto">
-            <div class="container" id="contenedor-formulario">
-                <div id="titulo-formulario" class="text-center mb-4">
-                    <img src="../../public/imagenes/ImagenI1.png" alt="LogoLogin" height="50" width="50" class="img-fluid mt-2">
-                    <h2 class="text-light fw-bold">Inicio de Sesión</h2>
-                    <p class="fs-5"></p>
-                    <form action="../Controlador/Ctrl_login.php" method="POST">
-                        <div class="mb-2 w-75 mx-auto">
-                            <label for="texto-usuario" class="form-label text-light fw-bold">Usuario</label>
-                            <input type="email" name="Usuario" class="form-control" id="texto-usuario" aria-describedby="ingreso de usuario" Required>
-                            <div id="AyudaUsuario" class="form-text">Recuerde que su nombre de usuario debe coincidir en mayúsculas y minúsculas</div>
-                        </div>
-                        <div class="mb-3 w-75 mx-auto">
-                            <label for="texto-password" class="form-label text-light fw-bold">Contraseña</label>
-                            <input type="password" name="Contrasena" class="form-control" id="texto-password" Required>
-                        </div>
-                        <button type="submit" class="btn btn-success w-75">INGRESAR</button>
-                        <h5>Registrese <a href="registro_usuario.php">Aquí</a></h5>
-                        <?php
-						if($_GET){
-							$fallo=$_GET['fallo'];
-							if($fallo=='error'){
-								echo "<div  class='alert alert-danger' >Error, verifique datos y reintente </div>";
-							}
-						}
-					?>
-                    </form>
+        <div class='container-fluid'>
+            <form action="../Controlador/Ctrl_consultaUE.php" method="POST">
+                <div class="mb-2 w-75 mx-auto">
+                    <label for="texto-usuario" class="form-label text-light fw-bold">Documento del Usuario</label>
+                    <input type="number" name="Documento" class="form-control" id="texto-usuario" aria-describedby="ingreso de usuario" Required>
                 </div>
-            </div>
-            <!--<div id="bg-formulario">             
-            </div>-->
-        </section>
+                <div class="mb-2 w-75 mx-auto">
+                    <button type="submit" class="btn btn-success w-100">CONSULTAR</button>
+                </div>        
+                        <?php
+						
+					?>
+            </form>
+        </div>
 
         <!-- PIE DE PÁGINA -->
 

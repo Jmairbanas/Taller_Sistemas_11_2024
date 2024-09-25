@@ -3,6 +3,7 @@ require_once ('../../config/Cls_conexion.php');
 class clsUsuario extends clsConexion
 {
     //Variables del usuario
+    private $idUsuario;
     private $tipoDocumento;
     private $documento;
     private $nombre;
@@ -21,6 +22,14 @@ class clsUsuario extends clsConexion
     }
 
     //Encapsulamiento de Variabls de Usuario
+    public function setidUsuario($idU)
+    {
+        $this->idUsuario = $idU;
+    }    
+    public function getidUsuario()
+    {
+        return $this->idUsuario;
+    }
     public function settipoDocumento($Tdoc)
     {
         $this->tipoDocumento = $Tdoc;
@@ -143,8 +152,7 @@ class clsUsuario extends clsConexion
 
     public function consultar_usuarios()
     {
-        $Consulta = $this->db->prepare("SELECT `idUsuario`, `tipoDocUsuario`, `numdocUsuario`, `nombreUsuario`, 
-        `apellidoUsuario`, `direccionUsuario`, `telefonoUsuario`, `correoUsuario` FROM `usuario`");
+        $Consulta = $this->db->prepare("CALL consultar_usuarios");
         $filas=null;
         $Consulta->execute();
 
@@ -155,5 +163,48 @@ class clsUsuario extends clsConexion
         
         return $filas;
     }
+
+    public function consultar_usuarioE()
+    {
+        $Consulta = $this->db->prepare("CALL Consultar_usuariosE (:idU);");
+        $Consulta->bindParam(':idU',$this->idUsuario);
+        $filas=null;
+        $Consulta->execute();
+
+        $filas=$Consulta->fetchall();
+        
+        return $filas;
+    }
+
+    public function Actualizar()
+    {
+        //$estado = 'Activo';
+
+        try{
+            $Consulta = $this->db->prepare("CALL Actualizar_UsuarioId(:idU,:tdoc, :numdoc)");
+            /*INSERT INTO usuario (TipoDocUsuario, NumdocUsuario, nombreUsuario, apellidoUsuario,
+            direccionUsuario, telefonoUsuario, correoUsuario, passwordUsuario, estadoUsuario, idRolUsuarioFK) VALUES (:tdoc, :numdoc, :nom,
+            :ape, :dir, :tel, :cor, :pass, :est, :idR)");*/
+            $Consulta->bindParam(':idU',$this->idUsuario);
+            $Consulta->bindParam(':tdoc',$this->tipoDocumento);
+            $Consulta->bindParam(':numdoc',$this->documento);
+            /*$Consulta->bindParam(':nom',$this->nombre);
+            $Consulta->bindParam(':ape',$this->apellido);
+            $Consulta->bindParam(':dir',$this->direccion);
+            $Consulta->bindParam(':tel',$this->telefono);
+            $Consulta->bindParam(':cor',$this->correo);
+            $Consulta->bindParam(':pass',$this->contrasena);
+            $Consulta->bindParam(':est',$estado);
+            $Consulta->bindParam(':idR',$this->idRol);*/
+            $Consulta->execute();
+            header('location:../vista/EditarUsuario.php?mensaje=actualizo');
+        }
+        catch(PDOException $error)
+        {
+            header('location:../vista/EditarUsuario.php?mensaje=noactualizo');
+        }
+
+    }
+
 }
 ?> 
