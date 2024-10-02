@@ -189,6 +189,18 @@ class clsUsuario extends clsConexion
         return $filas;
     }
 
+    public function consulta_rol_login()
+    { 
+        $Consulta = $this->db->prepare("CALL Consulta_Rol_login (:corU);");
+        $Consulta->bindParam(':corU',$this->correo);
+        $filas=null;
+        $Consulta->execute();
+
+        $filas=$Consulta->fetchall();
+        
+        return $filas;
+    }
+
     public function Actualizar()
     {
         //$estado = 'Activo';

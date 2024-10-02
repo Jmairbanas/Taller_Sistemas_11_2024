@@ -1,3 +1,14 @@
+<?php
+    session_start();
+    if(isset($_SESSION['usuario'])){
+        $login      =       TRUE;
+        $usuario    =       $_SESSION['usuario'];
+        $rol        =       $_SESSION['rol'];
+    }
+    else{
+        $login      =       FALSE;
+    }
+?>
 <!doctype html>
 <html lang="es">
   <head>
@@ -13,12 +24,6 @@
   <body>
         
         <!-- ENCABEZADO -->
-        <?php
-                require_once ("app/modelo/Cls_Usuario.php");
-                $Objusuario = new clsUsuario;
-                $Objusuario->setidUsuario('1');
-                $filas=$Objusuario->consulta_rol();
-        ?>
         <header class="container-fuid">
             <nav class="navbar navbar-expand-lg navbar-light bg-success" id="menu">
                 <div class="container-fluid">
@@ -40,14 +45,39 @@
                             <li class="nav-item">
                             <a class="nav-link text-light" href="#">Espacios</a>
                             </li>
+                            <?php
+                                if($login==TRUE)
+                                {
+                                    ?>
+                                    <li>
+                                        <a class="nav-link text-light" 
+                                        href="app/vista/menu.php">
+                                            Sistema
+                                        </a>
+                                    </li>
+                            <?php
+                                }
+                            ?>
                         </ul>
-                        <span class="navbar-text">
-                            <h5 class="text-light"> Usuario: <?php echo $filas[0]['nombreUsuario'];?>
-                             Rol: <?php echo $filas[0]['descriRolUsuario'];?></h5>    
-                        </span>
-                        <span class="navbar-text">
-                            <a href="app/vista/login.php" class="btn btn-success text-light">Login</a>
-                        </span>
+                        <?php
+                            switch($login)
+                            {
+                                case FALSE:
+                                ?>
+                                <span class="navbar-text">
+                                    <a href="app/vista/login.php" class="btn btn-success text-light">Login</a>
+                                </span>
+                        <?php  
+                                    break;
+                                case TRUE:
+                        ?>                
+                                <span class="navbar-text">
+                                    <h5 class="text-light"> Usuario: <?php echo $usuario;?>
+                                        Rol: <?php echo $rol;?></h5>    
+                                </span>
+                        <?php
+                            }
+                        ?>
                     </div>
                 </div>
             </nav>

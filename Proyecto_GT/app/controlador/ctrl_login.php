@@ -24,7 +24,20 @@ if(isset($_POST)&&!empty($_POST))
 
     if($objUsuario->Login()==true)
     {
-        header('location: ../vista/menu.php');
+        $filas = $objUsuario->consulta_rol_login();
+        if($filas != null)
+        {
+            foreach($filas as $fila)
+            {
+                $NombreUsuario      =       $fila['nombreUsuario'];      
+                $RolUsuario         =       $fila['descriRolUsuario'];       
+            }
+            
+            session_start();
+            $_SESSION['usuario']    =       $NombreUsuario;
+            $_SESSION['rol']        =       $RolUsuario;
+        }
+        header('location: ../../index.php');
     }
     else
     {
