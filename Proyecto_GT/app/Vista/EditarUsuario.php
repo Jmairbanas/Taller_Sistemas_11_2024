@@ -89,8 +89,12 @@
                         <?php
                         break;
                     case "actualizo":
-                        echo "<div class='alert alert-success'>Se actualizaron los datos del cliente correctamente</div>";
+                        echo "<div class='alert alert-success'>Se actualizaron los datos del usuario correctamente</div>";
                         echo "<a href='ConsultaUsuario.php' class='btn btn-success'>volver</a>";
+                        break;
+                    case "noactualizo":
+                        echo "<div class='alert alert-success'>No se actualizaron los datos del usuario correctamente</div>";
+                        echo "<a href='ConsultaUsuario.php' class='btn btn-danger'>volver</a>";
                         break;
                 }
                 

@@ -1,5 +1,6 @@
 <?php
-require_once ('../../config/Cls_conexion.php');
+require_once(__DIR__ . '/../../config/Cls_conexion.php');
+//require_once ('../../config/Cls_conexion.php');
 class clsUsuario extends clsConexion
 {
     //Variables del usuario
@@ -167,6 +168,18 @@ class clsUsuario extends clsConexion
     public function consultar_usuarioE()
     {
         $Consulta = $this->db->prepare("CALL Consultar_usuariosE (:idU);");
+        $Consulta->bindParam(':idU',$this->idUsuario);
+        $filas=null;
+        $Consulta->execute();
+
+        $filas=$Consulta->fetchall();
+        
+        return $filas;
+    }
+
+    public function consulta_rol()
+    {
+        $Consulta = $this->db->prepare("CALL Consulta_rol (:idU);");
         $Consulta->bindParam(':idU',$this->idUsuario);
         $filas=null;
         $Consulta->execute();
