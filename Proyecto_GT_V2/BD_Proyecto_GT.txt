@@ -101,6 +101,63 @@ INSERT INTO producto (nombreProducto, descripcionProducto, valorProducto, unidad
 
 -- Procedimientos Almacenados --
 DELIMITER //
+
+CREATE PROCEDURE Consultar_usuarios()
+BEGIN
+    SELECT `idUsuario`, `tipoDocUsuario`, `numdocUsuario`, `nombreUsuario`, `apellidoUsuario`, `direccionUsuario`, `telefonoUsuario`, `correoUsuario` FROM `usuario`;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE Consultar_usuariosE(in id int)
+BEGIN
+    SELECT `idUsuario`, `tipoDocUsuario`, `numdocUsuario`, `nombreUsuario`, `apellidoUsuario`, `direccionUsuario`, `telefonoUsuario`, `correoUsuario` FROM `usuario` WHERE  `idUsuario`=id;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE Actualizar_UsuarioId(in id int, in tpD varchar(30), in Doc varchar(20))
+BEGIN
+	UPDATE Usuario set tipoDocUsuario=tpD, numdocUsuario=Doc where idUsuario=id;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE
+insertar_usuario ()
+BEGIN
+Insert into usuario (correoUsuario,passwordUsuario,estadoUsuario,idRol) 
+VALUES
+('Correo','Contraseña','estado','3');
+SELECT LAST_INSERT_ID() AS ultimo_id;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE Consulta_rol_login (in corU varchar(70))
+BEGIN
+	SELECT usuario.nombreUsuario, rolusuario.descriRolUsuario
+		FROM usuario
+		INNER JOIN rolusuario
+		ON usuario.idRolUsuarioFK = rolusuario.idRolUsuario
+		WHERE
+		usuario.correoUsuario = corU;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE Eliminar_usuarios(in idU int)
+BEGIN
+	DELETE FROM usuario WHERE idUsuario = idu;
+END //
+DELIMITER ;
+
+-- Procedimiento Antiguos --
+DELIMITER //
 CREATE PROCEDURE Pr_EliminarEmpleado (IN idEmp INT)   
 BEGIN
 delete from empleado where idEmpleado=idEmp;
