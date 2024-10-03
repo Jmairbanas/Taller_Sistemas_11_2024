@@ -1,0 +1,45 @@
+/*Estilos Generales*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+body{
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Estilos Menu */
+
+#menu a {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Estilos Menu */
+
+.carousel-inner{
+    max-height: 35rem;
+}
+
+/*#bg-formulario{
+    position: relative;
+}*/
+
+#seccion-formulario{
+    background-color: #5cb85c;
+    min-height: 400;
+    position:relative;
+}
+
+/* Pantallas Pequeñas */
+
+@media (max-width: 768px) {
+    #inicio {
+        width: 90% !important;
+    }
+    .servicio-fila{
+        justify-content: start !important;
+        width: 100% !important;
+    }
+
+    #seccion-formulario{
+        width:70% !important;
+    }
+}
